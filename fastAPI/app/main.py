@@ -19,9 +19,8 @@ def get_question(id_question: int):
 
 @app.get("/random_question")
 def get_random_question():
-    question = api.getRandomQuestion()
-    return question
-
+    return api.getRandomQuestion()
+    
 @app.get("/answers/{id_question}")
 def get_answer(id_question: int):
     return api.getAnswer(id_question)
@@ -36,6 +35,5 @@ def get_classifica_finale():
 
 @app.post("/result/push", status_code=201)
 async def add_risultati_test(dati: dataForResult):
-    
     return api.add_values_in_classifica(dati.fk_utente, dati.score, dati.data_test)
 
