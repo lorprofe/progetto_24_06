@@ -35,5 +35,6 @@ def get_classifica_finale():
 
 @app.post("/result/push", status_code=201)
 async def add_risultati_test(dati: dataForResult):
+    
     return api.add_values_in_classifica(dati.fk_utente, dati.score, dati.data_test)
 
