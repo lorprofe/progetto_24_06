@@ -11,7 +11,7 @@ class RisultatiTest:
             # Generazione del cursore
             cursore = connessione.cursor()
             # Comando SQL per la visualizzazione dei database in formato SQL
-            cursore.execute("select * from test_risultati")
+            cursore.execute("select U.nome, U.cognome, TR.score, TR.data_test from utente U, test_risultati TR where TR.fk_utente = U.id_utente ")
             # get all records
             records = cursore.fetchall()
             # salva tutti gli elementi del record in una lista 
@@ -33,7 +33,6 @@ class RisultatiTest:
         try:
             # Generazione del cursore
             cursore = connessione.cursor()
-            cursore2 = connessione.cursor()
             # Query SQL per ottenere lo score da sommare
             query1 = """SELECT score FROM test_risultati WHERE fk_utente = %s;"""
             cursore.execute(query1, (id_utente, ))
@@ -41,8 +40,8 @@ class RisultatiTest:
             records = cursore.fetchall()
             somma = records[0][0] + score
             # Query SQL per l'inserimento dei valori nel database in formato SQL
-            query = """UPDATE test_risultati SET score = %s, data_test = %s WHERE fk_utente = %s;COMMIT;"""
-            cursore2.execute(query, (somma, data, id_utente))
+            query2 = """UPDATE test_risultati SET score = %s, data_test = %s WHERE fk_utente = %s;COMMIT;"""
+            cursore.execute(query2, (somma, data, id_utente))
             return print(f"""Modifica avvenuta con successo, aggiunti {score} punti, in data {data}, all'utente {id_utente}, ora ha {somma} punti""")
         except mysql.connector.Error as e:
                     print("Error reading data from MySQL table", e)
