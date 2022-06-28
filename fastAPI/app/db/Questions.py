@@ -1,3 +1,4 @@
+import json
 import mysql.connector
 from .DBConnection import DBUtility
 # creo la classe Questions in cui metto tutti i metodi che mi serviranno come api
@@ -24,7 +25,7 @@ class Questions:
                 connessione.close()
                 cursore.close()
         
-        return allQuestions
+        return json.dumps(allQuestions)
 
 
 

@@ -1,3 +1,4 @@
+import json
 import mysql.connector
 from datetime import datetime
 from .DBConnection import DBUtility
@@ -24,7 +25,7 @@ class RisultatiTest:
                 connessione.close()
                 cursore.close()
         
-        return classificaFinale
+        return json.dumps(classificaFinale)
 
     @staticmethod 
     def addValuesInClassifica(id_utente, score, data):

@@ -1,3 +1,4 @@
+import json
 import mysql.connector
 from .DBConnection import DBUtility
 # qui creo la classe User dove metto i metodi che andrò a richiamare nelle API
@@ -23,4 +24,4 @@ class User:
                 connessione.close()
                 cursore.close()
         
-        return allUsers
+        return json.dumps(allUsers)
