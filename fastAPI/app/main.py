@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from app.api import api
 from app.db.models import dataForResult
+
 app = FastAPI()
 
 @app.get("/questions")
