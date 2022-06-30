@@ -10,7 +10,9 @@
 
 # production
 /build
-
+/app/__pycache__
+/app/db/__pycache__
+/app/api/__pycache__
 # misc
 .DS_Store
 .env.local

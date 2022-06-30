@@ -1,11 +1,13 @@
-
+import axios from 'axios';
 
 import './App.css';
 import './script';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function App() {
+
+
 	const questions = [
 		{
 			questionText: 'Quale città ha più abitanti?',
@@ -102,6 +104,18 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+	const[back, setBack] = useState([])
+	useEffect(()=>{
+		axios.get("http://127.0.0.1:8000/user").then(
+			res=>{
+				console.log(res)
+				setBack(res.data)
+			}
+			
+		).catch(err=>{
+			console.log(err)
+		})
+	})
 
 	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
@@ -118,7 +132,7 @@ export default function App() {
 	
 	  return (
   		
-  		  <div>
+  		<div>
   		    <div className='app'>
       			{showScore ? (
       				<div className='score-section'>
@@ -147,7 +161,7 @@ export default function App() {
           <form>
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">Email:</label>
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
               <br />
             </div>
             <div className="mb-3">
@@ -158,17 +172,5 @@ export default function App() {
           </form>
         </div>
       </footer>
-
-    		</div>
-
-          );
-        }
-        
- 
-
-
-
-
-
-
-
+    </div>
+);}
