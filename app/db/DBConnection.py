@@ -8,7 +8,7 @@ class DBUtility:
         data = {
             "endpoint" : "localhost",
             "user" : "root",
-            "password" : "0310",
+            "password" : "Vale2002",
             "database" : "task2406"
         }
         try:  
