@@ -120,4 +120,18 @@ footer{
     display: flex;
     justify-content: space-evenly;
 }
+ 
+
+input {
+  color : black;
+}
+
+#bottone {
+  width : 50%;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+#wasd{
+  color: #FF00FF;
+}
   
