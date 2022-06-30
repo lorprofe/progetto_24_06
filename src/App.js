@@ -104,7 +104,7 @@ export default function App() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
-	const[back, setBack] = useState([])
+	const [back, setBack] = useState([])
 	useEffect(()=>{
 		axios.get("http://127.0.0.1:8000/user").then(
 			res=>{
@@ -160,8 +160,8 @@ export default function App() {
         <div id="form">
           <form>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">Email:</label>
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+              <label htmlFor="exampleInputEmail1" className="form-label">Username:</label>
+              <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
               <br />
             </div>
             <div className="mb-3">
