@@ -1,9 +1,18 @@
 from fastapi import FastAPI, HTTPException
 from app.api import api
 from app.db.models import dataForResult
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+origins = [""]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=[""],
+    allow_headers=["*"],
+)
 @app.get("/questions")
 def read_all_questions():
     return api.getAllQuestions()

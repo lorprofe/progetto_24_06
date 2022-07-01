@@ -1,3 +1,5 @@
+import json
+import requests
 import random
 from ..db.Answers import Answers
 from ..db.Questions import Questions
@@ -10,27 +12,20 @@ def getAllQuestions():
 
 def getQuestion(index: int):
     AllQuestions = Questions.getAllQuestions()
-    
-    for elem in AllQuestions:
-        if elem == AllQuestions[index - 1]:
-            return elem
+    return AllQuestions.get(index)
 
 def getRandomQuestion():
-    allQuestions = Questions.getAllQuestions()
-    indexQ = random.randint(0,11)
-
-    for question in allQuestions:
-        if question == allQuestions[indexQ]:
-            return question
+    AllQuestions = Questions.getAllQuestions()
+    indexQ = random.randint(1,12)
+    return AllQuestions.get(indexQ)
 
 def getAnswer(id_question: int):
-    allAnswer = Answers.getAllAnswers()
-    fourAnswer = []
-    for answer in allAnswer:
-        if answer[2] == id_question:
-            fourAnswer.append(answer)
-
-    return fourAnswer
+    allAnswers = Answers.getAllAnswers()
+    fourAnswers = []
+    if id_question != 1:
+        for index in range(4*id_question - 3 , 4*id_question + 1):
+            fourAnswers.append(allAnswers.get(index))
+    return fourAnswers
     
 def getAllUser():
     return User.getAllUsers()

@@ -1,4 +1,4 @@
-import json
+from fastapi.responses import JSONResponse
 import mysql.connector
 from .DBConnection import DBUtility
 # qui creo la classe User dove metto i metodi che andrò a richiamare nelle API
@@ -6,7 +6,8 @@ class User:
     @staticmethod
     def getAllUsers():
         connessione = DBUtility.getConnection()
-        allUsers = []
+        user = []
+        password = []
         try:
             # Generazione del cursore
             cursore = connessione.cursor()
@@ -16,7 +17,9 @@ class User:
             records = cursore.fetchall()
             # salva tutti gli elementi del record in una lista 
             for elem in records:
-                allUsers.append(elem)
+                user.append(elem[0])
+                password.append(elem[1])
+            dict_users = dict(zip(user, password))
         except mysql.connector.Error as e:
                     print("Error reading data from MySQL table", e)
         finally:
@@ -24,4 +27,4 @@ class User:
                 connessione.close()
                 cursore.close()
         
-        return json.dumps(allUsers)
+        return dict_users
